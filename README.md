@@ -31,7 +31,7 @@ By Kasun Chaturanga Gajamange / kchaturanga@gmail.com
 
 ## Simple Data Model
 
-![alt Starbux Class Diagram ](StarbuxClassDiagram.jpg)
+![alt Class Diagram ](Classes.png)
 
 ## Default Data 
 
