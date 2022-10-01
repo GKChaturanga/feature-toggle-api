@@ -10,7 +10,7 @@ By Kasun Chaturanga Gajamange / kchaturanga@gmail.com
 - Checkout the both UI and API in to a same workspace 
 - Open **.env**  file and  Change _LOG_PATH_ and _DATASTORE_PATH host paths 
 - Add your preferred port to **.env** *APPLICATION_PORT*
-- Make sure you have java 8 installed ( Or higher )
+- Make sure you have java 17 installed ( Or higher )
 - Execute *build.sh* and it will 
 		- compile application 
 		- Execute all integration tests 
