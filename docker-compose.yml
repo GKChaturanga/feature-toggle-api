@@ -1,0 +1,58 @@
+# Docker compose for payconiq-stock-manager
+version: '3.7'
+services:
+  mysql-datbase:
+    image:  mysql:8
+    ports:
+      - 3308:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: ${DATABASE}
+    volumes:
+      -  ${DATASTORE_PATH}:/kasuncwork/swiscom/daata/
+    networks:
+      - my-db-net
+      
+  swisscom-feturetoggle-api:
+    environment:
+      - SERVER_PORT=${APPLICATION_PORT}
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=123456
+      - MYSQL_DATABASE=${DATABASE}
+      - DATA_PER_PAGE=${DATA_PER_PAGE}
+      - LOG_FILE_NAME=${LOG_PATH}/app.log
+      - MYSQL_HOST=mysql-datbase
+      - MYSQL_PORT=3306
+    image: swisscom:swisscom-feturetoggle-api
+    networks:
+      - my-db-net
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      - mysql-datbase
+    volumes:
+      - ${LOG_PATH}:/kasuncwork/swiscom/daata/
+    stdin_open: true
+    tty: true
+
+  swisscom-feturetoggle-ui:
+    environment:
+      - REACT_APP_BASE_URL=http://localhost:8080
+    image: swisscom:swisscom-feturetoggle-ui
+    networks:
+      - my-db-net
+    build:
+      context: ../feature-toggle-ui/
+      dockerfile: ./Dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - swisscom-feturetoggle-api 
+    stdin_open: true
+    tty: true
+
+networks:
+  my-db-net:

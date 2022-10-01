@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <springProperty name="fileName" scope="context"
+        source="system.log.file.location" />
+        
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n
+            </Pattern>
+        </layout>
+    </appender>
+    
+   <property name="LOG_FILE" value="${fileName}"/>
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_FILE}</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        <!-- daily rollover -->
+        <fileNamePattern>${LOG_FILE}.%d{yyyy-MM-dd}.gz</fileNamePattern>
+
+        <!-- keep 30 days' worth of history capped at 3GB total size -->
+        <maxHistory>30</maxHistory>
+        <totalSizeCap>3GB</totalSizeCap>
+    </rollingPolicy>
+    <encoder>
+        <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+    </encoder>
+</appender> 
+    
+     <logger name="org.hibernate" level="DEBUG" />
+     <logger name="org.springframework" level="INFO" />
+     <logger name="org.spring" level="INFO" />
+     <logger name="com.zaxxer" level="INFO" />
+     <logger name="org.thymeleaf" level="INFO" />
+     <logger name="org.flywaydb" level="INFO" />
+          
+     
+    
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+   
+    <root level="DEBUG">
+        <appender-ref ref="FILE" />
+        <appender-ref ref="CONSOLE" />
+    </root>
+</configuration>
