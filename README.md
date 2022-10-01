@@ -26,7 +26,7 @@ By Kasun Chaturanga Gajamange / kchaturanga@gmail.com
 
 
 ## Application Architecture 
-- Spring Boot 2.7.1  / Spring 5x  / ReactJS on UI
+- Spring Boot 2.7.4  / Spring 5x  / ReactJS on UI
 - Containerized deployment support     
 
 ## Simple Data Model
