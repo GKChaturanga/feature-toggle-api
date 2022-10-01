@@ -21,20 +21,20 @@ import com.swisscom.model.payload.ValidationErrorResponse;
  
 /**
  * FeatureToggleExceptionHandler used to handle exceptions on the 
- * stock controller operation  and send a meaning full repose to client 
+ *  operation  and send a meaning full repose to client 
  * 
  * @author kasunc
  *
  */
 @ControllerAdvice
 public class FeatureToggleExceptionHandler extends ResponseEntityExceptionHandler {
-
+ 
 	@Autowired
 	MessageSource messageSource;
 
 	@ExceptionHandler(value = { FeatureToggleException.class })
-	protected ResponseEntity<Object> handleStockManagerExceptions(FeatureToggleException ex, WebRequest request) {
-		//Define the error message according to StockManagerException key 
+	protected ResponseEntity<Object> handleFeatureToggleExceptions(FeatureToggleException ex, WebRequest request) {
+		//Define the error message according to FeatureToggleException key 
 		return handleExceptionInternal(ex,
 				new ErrorResponse(messageSource.getMessage(ex.getMesageKey(), null, Locale.getDefault()).toString()), new HttpHeaders(),
 				ex.getHttpStatus(), request);

@@ -10,34 +10,34 @@ public class  PaginatedFeatureToggleResponse extends PaginatedResponse<FeatureTo
 	 */
 	public static final class Builder {
 
-		private PaginatedFeatureToggleResponse paginatedStockResponse = new PaginatedFeatureToggleResponse();
+		private PaginatedFeatureToggleResponse paginatedFeatureToggleResponse = new PaginatedFeatureToggleResponse();
 
 		public Builder perPage(long perPage) {
-			this.paginatedStockResponse.setDataPerPage(perPage);
+			this.paginatedFeatureToggleResponse.setDataPerPage(perPage);
 			return this;
 		}
 
 		public Builder totalCount(long totalCount) {
-			this.paginatedStockResponse.setTotalCount(totalCount);
+			this.paginatedFeatureToggleResponse.setTotalCount(totalCount);
 			return this;
 		}
 
 		public Builder totalPages(long totalPages) {
-			this.paginatedStockResponse.setTotalPages(totalPages);
+			this.paginatedFeatureToggleResponse.setTotalPages(totalPages);
 			return this;
 		}
 		public Builder currentPage(long currentPage) {
-			this.paginatedStockResponse.setCurrentPage(currentPage);
+			this.paginatedFeatureToggleResponse.setCurrentPage(currentPage);
 			return this;
 		}
 
 		public Builder payload(List<FeatureToggleOut> list) {
-			this.paginatedStockResponse.setPayload(list);
+			this.paginatedFeatureToggleResponse.setPayload(list);
 			return this;
 		}
 
 		public PaginatedFeatureToggleResponse build() {
-			return paginatedStockResponse;
+			return paginatedFeatureToggleResponse;
 		}
 
 	}

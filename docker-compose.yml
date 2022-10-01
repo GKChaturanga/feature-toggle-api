@@ -1,4 +1,4 @@
-# Docker compose for payconiq-stock-manager
+# Docker compose for swiscom-assignment
 version: '3.7'
 services:
   mysql-datbase:

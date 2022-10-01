@@ -27,42 +27,23 @@ public class ApplicationAspect {
 	
 	Logger logger = LoggerFactory.getLogger(ApplicationAspect.class);
 	//Logs all method attributes / Request body of FeatureToggleService 
-	@Before("execution(*  com.swisscom.service.FeatureToggleService.*(..)) && args(request,..)")
+	@Before("execution(*  com.swisscom.service.*.*(..)) && args(request,..)")
 	public void activityAvaialabilityStart(JoinPoint joinPoint , Object request) throws Exception {
-		if("getFeatureToggles".equalsIgnoreCase(joinPoint.getSignature().getName())) {
-			logger.debug("START getFeatureToggles with page ->  {}" , ((PaginatedRequest)request).getCurrentPage() );
-		} 
-		if("createFeatureToggles".equalsIgnoreCase(joinPoint.getSignature().getName())) { 
-			logger.debug("START createFeatureToggles with FeatureToggles ->  {}" ,request   );
-		} 
-		if("getFeatureToggle".equalsIgnoreCase(joinPoint.getSignature().getName())) {
-			logger.debug("START getFeatureToggle with id ->  {}" , (long)request );
-		} 
-		if("deleteFeatureToggles".equalsIgnoreCase(joinPoint.getSignature().getName())) {
-			logger.debug("START deleteFeatureToggles with id ->  {}" , (long)request );
-		} 
+		logger.debug("START {} with page ->  {}" , joinPoint.getSignature().getName() ,   request);
+		
+	 
 		
 	}  
 	//Logs all method returns  of FeatureToggleService
-	@AfterReturning (pointcut = "execution(* com.swisscom.service.FeatureToggleService.*(..)) && args(request,..) " ,  returning = "response")
+	@AfterReturning (pointcut = "execution(* com.swisscom.service.*.*(..)) && args(request,..) " ,  returning = "response")
 	public void activityAvaialabilityEnd(JoinPoint joinPoint , Object request , Object response) throws Exception {
-		if("getFeatureToggles".equalsIgnoreCase(joinPoint.getSignature().getName())) {
-			logger.debug("End getFeatureToggles with page ->  {} found {} results from total of {}",  ((PaginatedRequest)request).getCurrentPage() , ((PaginatedFeatureToggleResponse )response).getPayload().size() , ((PaginatedFeatureToggleResponse) response).getTotalCount() );
-		}  
-		if("createFeatureToggles".equalsIgnoreCase(joinPoint.getSignature().getName())) {
-			logger.debug("End  createFeatureToggles with FeatureToggles  ->  {} with {} " ,  request  , response   );
-		} 
-		if("getFeatureToggle".equalsIgnoreCase(joinPoint.getSignature().getName())) {
-			logger.debug("End getFeatureToggle with id ->  {} and found {}" , (long)request  , response  );
-		} 
-		if("deleteFeatureToggles".equalsIgnoreCase(joinPoint.getSignature().getName())) {
-			logger.debug("End deleteFeatureToggles with id ->  {}" , (long)request );
-		} 
+		logger.debug("END {} with page ->  {} found {}" , joinPoint.getSignature().getName() ,   request , response);
+		 
 		
 	}
 	
 	//Logs all exceptions and convert non handled exceptions to FeatureToggleManagerException with 500 status 
-	@AfterThrowing (pointcut = "execution(*  com.swisscom.service.FeatureToggleService.*(..))" ,  throwing = "exception")
+	@AfterThrowing (pointcut = "execution(*  com.swisscom.service.*.*(..))" ,  throwing = "exception")
 	public void activityAvaialabilityError(JoinPoint joinPoint ,  Exception exception) throws FeatureToggleException {
 		logger.error( "ERROR  in -> {} -> {}" ,joinPoint.getSignature().getName()  ,  joinPoint.getTarget().getClass().getSimpleName(),exception  );  
 		if(! (exception instanceof FeatureToggleException)) {
