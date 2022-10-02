@@ -25,9 +25,9 @@ CREATE TABLE featuretoggle (
 
 CREATE TABLE customerfeaturetoggle (
   id INTEGER NOT NULL AUTO_INCREMENT, 
-   expireson datetime NOT NULL, 
-  teaturetoggleid INTEGER , 
-    inverted INTEGER , 
+   
+  FEATURETOGGLEID INTEGER , 
+    
   customerid INTEGER ,
   created_date datetime NOT NULL, 
   last_update  datetime DEFAULT NULL, 

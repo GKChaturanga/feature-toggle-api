@@ -21,6 +21,7 @@ import com.swisscom.model.jpa.Customer;
 import com.swisscom.model.jpa.FeatureToggle;
 import com.swisscom.model.payload.FeatureDisplay;
 import com.swisscom.model.payload.FeatureRequest;
+import com.swisscom.model.payload.FeatureResponse;
 import com.swisscom.model.payload.FeatureToggleIn;
 import com.swisscom.model.payload.FeatureToggleOut;
 import com.swisscom.model.payload.PaginatedFeatureToggleResponse;
@@ -224,7 +225,7 @@ public class FeatureToggleServiceImpl implements FeatureToggleService {
 
 
 	@Override
-	public List<FeatureDisplay> findFeatureRequests(FeatureRequest featureRequest) {
+	public FeatureResponse findFeatureRequests(FeatureRequest featureRequest) {
 		Date today = new Date();
 		 List<FeatureDisplay> fds = null ; 
 		 Optional<Customer> customer =  customerRepository.findById(Long.valueOf(featureRequest.getCustomerId()));
@@ -241,7 +242,7 @@ public class FeatureToggleServiceImpl implements FeatureToggleService {
 		 }
 
 		 
-		return fds;
+		return  new FeatureResponse( fds );
 	}
 
 }

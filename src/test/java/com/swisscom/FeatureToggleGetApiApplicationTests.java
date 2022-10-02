@@ -34,7 +34,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ActiveProfiles("test")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
-public class FeatureToggleGetApiApplicationTests {
+class FeatureToggleGetApiApplicationTests {
 
 	@Value("${app.data.items.per.page}")
 	private int pageSize ; 

@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;  
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -51,7 +52,25 @@ class FeatureTogglePostApiApplicationTests {
 				.andDo(print()).andExpect(status().isCreated()).andExpect(jsonPath("$.id").exists());
 
 	}
-	
+	@Test
+	void shouldReturnOkObjectAndResturnWithIdOnPatch() throws Exception {
+		//dd/MM/yyyy HH:mm:ss 31/12/2012 23:59:59
+		String creationJson = """
+				{	"id" : "1" ,
+					  "displayName": "My Feature g",
+					  "technicalName": "my-feature-g",
+					  "expiresOn": "31/12/2022 23:59:59",
+					  "description": "My Feature A Sample Description",
+					  "inverted": false
+					}
+				""";
+				
+		this.mockMvc
+				.perform(patch("/api/featuretoggle/1").content(creationJson).contentType(MediaType.APPLICATION_JSON)
+						.accept(MediaType.APPLICATION_JSON))
+				.andDo(print()).andExpect(status().isOk()).andExpect(jsonPath("$.id").exists());
+
+	}
 	@Test
 	void shouldReturnBadRequestErrorWhenCreatingWithoutTechinicalNameOnPost() throws Exception {
 		//dd/MM/yyyy HH:mm:ss 31/12/2012 23:59:59

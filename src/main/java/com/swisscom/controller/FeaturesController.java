@@ -17,6 +17,7 @@ import com.swisscom.conf.FeatureToggleException;
 import com.swisscom.model.payload.ErrorResponse;
 import com.swisscom.model.payload.FeatureDisplay;
 import com.swisscom.model.payload.FeatureRequest;
+import com.swisscom.model.payload.FeatureResponse;
 import com.swisscom.model.payload.FeatureToggleIn;
 import com.swisscom.model.payload.FeatureToggleOut;
 import com.swisscom.service.FeatureToggleService;
@@ -48,10 +49,10 @@ public class FeaturesController {
 			@ApiResponse(responseCode = "409", description = "A FeatureToggleOut available with same name or technical in the system ", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
 			@ApiResponse(responseCode = "500", description = "API Internal error ", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
 
-	public ResponseEntity<List<FeatureDisplay>> findFeatureRequests(
+	public ResponseEntity<FeatureResponse> findFeatureRequests(
 			  @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "FeatureRequest ", required = true, content = @Content(schema = @Schema(implementation = FeatureRequest.class))) @RequestBody FeatureRequest featureRequest)
 			throws FeatureToggleException {
-		return new ResponseEntity<>(featureToggleService.findFeatureRequests(featureRequest), HttpStatus.CREATED);
+		return new ResponseEntity<>(featureToggleService.findFeatureRequests(featureRequest), HttpStatus.OK);
 
 	}
 }

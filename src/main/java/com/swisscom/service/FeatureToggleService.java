@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import com.swisscom.model.payload.FeatureDisplay;
 import com.swisscom.model.payload.FeatureRequest;
+import com.swisscom.model.payload.FeatureResponse;
 import com.swisscom.model.payload.FeatureToggleIn;
 import com.swisscom.model.payload.FeatureToggleOut;
 import com.swisscom.model.payload.PaginatedFeatureToggleResponse;
@@ -23,6 +24,6 @@ public interface FeatureToggleService {
 
 	void deleteFeatureToggles(long featureToggleId);
 
-	List<FeatureDisplay> findFeatureRequests(FeatureRequest featureRequest);
+	FeatureResponse findFeatureRequests(FeatureRequest featureRequest);
 
 }
