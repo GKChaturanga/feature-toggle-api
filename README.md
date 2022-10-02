@@ -33,6 +33,10 @@ By Kasun Chaturanga Gajamange / kchaturanga@gmail.com
 
 ![alt Class Diagram ](Classes.png)
 
+## API Doc
+![alt API documentation  ](APIdoc.png)
+
+
 ## Default Data 
 
 Default data initialization is managed by **flyaway**db migrations  
