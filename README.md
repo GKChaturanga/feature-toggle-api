@@ -20,9 +20,9 @@ By Kasun Chaturanga Gajamange / kchaturanga@gmail.com
 ---
 
 - docker-compose will bootup  Application with  
-		- java 17 based container for application created with .Dockerfile
-		- feturetoggle-ui With ReactJS on a node JS user 
-		- MySQL 8 container 
+		-- java 17 based container for application created with .Dockerfile
+		-- feturetoggle-ui With ReactJS on a node JS  
+		-- MySQL 8 container 
 
 
 ## Application Architecture 
