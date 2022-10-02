@@ -13,7 +13,7 @@ services:
     networks:
       - my-db-net
       
-  swisscom-feturetoggle-api:
+  swisscom-featuretoggle-api:
     environment:
       - SERVER_PORT=${APPLICATION_PORT}
       - MYSQL_USER=root
@@ -23,7 +23,7 @@ services:
       - LOG_FILE_NAME=${LOG_PATH}/app.log
       - MYSQL_HOST=mysql-datbase
       - MYSQL_PORT=3306
-    image: swisscom:swisscom-feturetoggle-api
+    image: swisscom:swisscom-featuretoggle-api
     networks:
       - my-db-net
     build:
@@ -38,10 +38,10 @@ services:
     stdin_open: true
     tty: true
 
-  swisscom-feturetoggle-ui:
+  swisscom-featuretoggle-ui:
     environment:
-      - REACT_APP_BASE_URL=http://localhost:8080
-    image: swisscom:swisscom-feturetoggle-ui
+      - REACT_APP_BASE_URL=${API_HOST_URL}:http://localhost:8080
+    image: swisscom:swisscom-featuretoggle-ui
     networks:
       - my-db-net
     build:
@@ -50,7 +50,7 @@ services:
     ports:
       - 3000:3000
     depends_on:
-      - swisscom-feturetoggle-api 
+      - swisscom-featuretoggle-api 
     stdin_open: true
     tty: true
 
