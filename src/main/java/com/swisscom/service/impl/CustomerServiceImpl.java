@@ -70,10 +70,7 @@ public class CustomerServiceImpl implements CustomerService {
 		Optional<CustomerFeatureToggle> cusFetures = customerFeatureToggleRepositiry.findFeatureToggleByCustomerAndFeture(Long.valueOf(featureRequest.customerId()), Long.valueOf(featureRequest.featureId()));
 		if(cusFetures.isPresent() ) {
 			CustomerFeatureToggle customerFeatureToggle = cusFetures.get();
-			
-			customerFeatureToggle.setFeatureToggle(null);
-			customerFeatureToggle.setCustomer(null);
-			
+			 
 			 
 			customerFeatureToggleRepositiry.delete(customerFeatureToggle);
 			
